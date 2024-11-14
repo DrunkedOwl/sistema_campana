@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 # Configuración de la conexión a MySQL
 db_config = {
-    'user': 'tu_usuario',
-    'password': 'tu_contraseña',
+    'user': 'root',
+    'password': 'root',
     'host': 'localhost',
     'database': 'sistema_campanas'
 }
