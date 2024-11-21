@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import mysql.connector
 
 app = Flask(__name__)
@@ -6,10 +6,13 @@ app = Flask(__name__)
 # Configuración de la conexión a MySQL
 db_config = {
     'user': 'root',
-    'password': 'root',
+    'password': '',
     'host': 'localhost',
     'database': 'sistema_campanas'
 }
+#endopoit de inicio de la aplicacion
+
+
 
 # Endpoint para obtener todas las campañas
 @app.route('/campanas', methods=['GET'])
@@ -17,7 +20,7 @@ def obtener_campanas():
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM campanas")
-    campanas = cursor.fetchall()
+    campanas = cursor.fetchall() # Obtiene todas las filas de la consulta
     cursor.close()
     conn.close()
     return jsonify(campanas)
@@ -30,7 +33,8 @@ def agregar_campana():
     cursor = conn.cursor()
 
     query = """
-        INSERT INTO campanas (nombre, descripcion, palabras_clave, categoria, estado, intervalo)
+        INSERT INTO campanas 
+        (nombre, descripcion, palabras_clave, categoria, estado, intervalo)
         VALUES (%s, %s, %s, %s, %s, %s)
     """
     cursor.execute(query, (
@@ -86,4 +90,4 @@ def eliminar_campana(id):
     return jsonify({"message": "Campaña eliminada exitosamente"}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000, host='localhost')

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para cargar campañas desde el backend
     function loadCampaigns() {
-        fetch("http://localhost:5000/campanas")
+        fetch("http://127.0.0.1:5000/campanas")
             .then(response => response.json())
             .then(campanas => {
                 campaignTableBody.innerHTML = ""; // Limpiar la tabla
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Manejador de envío del formulario de configuración de campaña
-    const campaignForm = document.getElementById("campaign-form");
+    const campaignForm = document.getElementById("campaign-form"); // Formulario de campaña
     campaignForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -112,8 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("http://localhost:5000/campanas", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
-            },
+                "Content-Type": "application/json",
+            },  
             body: JSON.stringify(campaignData)
         })
         .then(response => response.json())

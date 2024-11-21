@@ -20,3 +20,5 @@ CREATE TABLE usuarios (
     usuario VARCHAR(30) NOT NULL,
     psswd VARCHAR(30) NOT NULL
 );
+
+INSERT INTO campanas (nombre, descripcion, palabras_clave, categoria, intervalo) VALUES ('Campaña 1', 'Descripción de la campaña 1', 'palabra1, palabra2, palabra3', 'Categoria 1', 1);
